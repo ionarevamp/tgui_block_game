@@ -1,0 +1,16 @@
+[package]
+name = "tgui_block_game"
+version = "0.1.0"
+edition = "2021"
+
+[profile.release]
+opt-level = 3
+
+[dependencies]
+base64 = "0.13"
+image = "0.24"
+interpolator = { version = "0.5.0", features = ["debug", "iter", "number", "pointer"] }
+rand = "0.8.5"
+rayon = "1.10.0"
+serde_json = "1.0.128"
+tgui-rs = { version = "0.1.0", path = "../TERMUXGUI/tgui-rs" }
