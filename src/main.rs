@@ -109,7 +109,7 @@ impl Object {
 
         use ObjectName::*;
 
-        println!("Drawing at {}, {}", self.x, self.y);
+        //println!("Drawing at {}, {}", self.x, self.y);
 
         for x in ((self.x-self.size/2.0) as usize)..((self.x+self.size/2.0) as usize) {
             for y in ((self.y-self.size/2.0) as usize)..((self.y+self.size/2.0) as usize) {
