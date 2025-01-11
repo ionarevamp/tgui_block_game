@@ -13,4 +13,4 @@ interpolator = { version = "0.5.0", features = ["debug", "iter", "number", "poin
 rand = "0.8.5"
 rayon = "1.10.0"
 serde_json = "1.0.128"
-tgui-rs = { version = "0.1.0", path = "../TERMUXGUI/tgui-rs" }
+tgui-rs = { version = "0.1.0", path = "TERMUXGUI/tgui-rs" }

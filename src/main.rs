@@ -306,7 +306,7 @@ fn main() {
 
     let mut enemy_list = Vec::with_capacity(10);
 
-    for i in 10..40 {
+    for i in 9..40 {
         enemy_list.push( Object::new(
             ObjectName::Enemy(EnemyType::Weak),
             ((WIDTH/2 + (i+1) * 10) % WIDTH) as f64,
