@@ -308,7 +308,7 @@ fn main() {
 
     for i in 9..40 {
         enemy_list.push( Object::new(
-            ObjectName::Enemy(EnemyType::Weak),
+            ObjectName::Enemy(EnemyType::Medium),
             ((WIDTH/2 + (i+1) * 10) % WIDTH) as f64,
             ((HEIGHT/2 + (i+1) * 10) % HEIGHT) as f64,
             10.0,
@@ -329,7 +329,7 @@ fn main() {
         loop {
             if let Ok(ev) = imagerqrx.recv() {
                 println!("Rendering thread received event");
-                let player = loop {
+                let mut player = loop {
                     if let Ok(lock) = _player.lock() {
                         break lock;
                     }
@@ -354,7 +354,16 @@ fn main() {
                     let mut cached_delete = Vec::new();
                     for (i, enemy) in enemy_list.iter_mut().enumerate() {
                         let distance_to_player = ((player.x-enemy.x).powf(2.0) + (player.y-enemy.y).powf(2.0)).sqrt();
-                        if player.collides_with(enemy.clone()) {
+                        if player.collides_with(enemy.clone())  {
+                            player.hp -= match enemy.name {
+                                ObjectName::Enemy(EnemyType::Weak) => 0.5f64,
+                                ObjectName::Enemy(EnemyType::Medium) => 1.0f64,
+                                ObjectName::Enemy(EnemyType::Strong) => 1.5f64,
+                                _ => 0.0,
+                            };
+                        }
+
+                        if player.hp <= 0.0 {
                             println!("Game over.");
                             let _ = _eventtx.send(ChannelEvent::Done);
                         }
@@ -423,7 +432,7 @@ fn main() {
                                 break lock;
                             }
                         };
-                        player.up(5.0).left(5.0);
+                        player.up(10.0).left(10.0);
                     }
 
                     if event.id == up_arrow.get_id() {
@@ -432,7 +441,7 @@ fn main() {
                                 break lock;
                             }
                         };
-                        player.up(5.0);
+                        player.up(10.0);
                     }
                     if event.id == up_right_arrow.get_id() {
                         let mut player = loop {
@@ -440,7 +449,7 @@ fn main() {
                                 break lock;
                             }
                         };
-                        player.up(5.0).right(5.0);
+                        player.up(10.0).right(10.0);
                     }
                     if event.id == down_arrow.get_id() {
                         let mut player = loop {
@@ -448,7 +457,7 @@ fn main() {
                                 break lock;
                             }
                         };
-                        player.down(5.0);
+                        player.down(10.0);
                     }
                     if event.id == down_left_arrow.get_id() {
                         let mut player = loop {
@@ -456,7 +465,7 @@ fn main() {
                                 break lock;
                             }
                         };
-                        player.down(5.0).left(5.0);
+                        player.down(10.0).left(10.0);
                     }
                     if event.id == down_right_arrow.get_id() {
                         let mut player = loop {
@@ -464,7 +473,7 @@ fn main() {
                                 break lock;
                             }
                         };
-                        player.down(5.0).right(5.0);
+                        player.down(10.0).right(10.0);
                     }
                     if event.id == left_arrow.get_id() {
                         let mut player = loop {
@@ -472,7 +481,7 @@ fn main() {
                                 break lock;
                             }
                         };
-                        player.left(5.0);
+                        player.left(10.0);
                     }
                     if event.id == right_arrow.get_id() {
                         let mut player = loop {
@@ -480,7 +489,7 @@ fn main() {
                                 break lock;
                             }
                         };
-                        player.right(5.0);
+                        player.right(10.0);
                     }
 
                 },
