@@ -12,5 +12,7 @@ image = "0.24"
 interpolator = { version = "0.5.0", features = ["debug", "iter", "number", "pointer"] }
 rand = "0.8.5"
 rayon = "1.10.0"
+sdl2 = { path = "./rust-sdl2", version = "0.37.0" }
 serde_json = "1.0.128"
-tgui-rs = { version = "0.1.0", path = "TERMUXGUI/tgui-rs" }
+tgui-rs = { version = "0.1.0", path = "TERMUXGUI/tgui-rs" , default-features=false}
+
