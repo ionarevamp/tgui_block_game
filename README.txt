@@ -4,4 +4,4 @@ The controls are mostly obvious, but the `o` button in the middle "fires" your "
 
 Also, you can change the code to generate stronger enemies that move faster (line 311). The options are Weak, Medium, and Strong.
 
-Furthermore, this repo uses a local fork of tgui-rs at https://github.com/ArtemisX64/tgui-rs
+Furthermore, this repo uses a local fork of tgui-rs, the public version of which can be found at https://github.com/ArtemisX64/tgui-rs
